@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="bootstrap-4.0.0.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="jquery-3.3.1.min.js"></script>
+    <script src="gaugemeter.js"></script>
+    
+    <script>
+       $(document).ready(function() {
+          $.get("sensors.json", function( data ) {
+              console.log(data);
+              $("#tmp36").attr("data-percent", Math.round(data.TMP36*100/30));
+              $("#tmp36").attr("data-text", Math.round(data.TMP36));
+              $("#ldr").attr("data-percent", data.LDR);
+              $("#date").html(data.date);
+              $(".GaugeMeter").gaugeMeter();
+          });
+       });
+    </script>
+    <title>Sensor 1</title>
+  </head>
+  <body>
+    <div class="jumbotron">
+      <h1 class="display-4">Sensor 1</h1>
+      <p class="lead">Simples capteurs pour la maison</p>
+      <div class="container">
+        <div class="row">
+          <div class="col-md">
+            <div class="GaugeMeter" id="tmp36" data-percent="..." data-append="&deg;C" data-size="300" data-theme="Red-Gold-Green" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="20" data-label="Temp" data-style="Arch"></div>
+          </div>
+          <div class="col-md">
+             <div class="GaugeMeter" id="ldr" data-percent="..." data-size="250" data-theme="DarkBlue-LightBlue" data-animate_gauge_colors="1" data-animate_text_colors="1" data-width="20" data-label="Lum" data-style="Arch"></div>
+          </div>
+        </div>
+      </div>
+      <hr class="my-4">
+      <p>Derni&egrave;re mise &agrave; jour : <span id="date" class="badge badge-secondary">...</span></p>
+      </div>
+  </body>
+  </html>
