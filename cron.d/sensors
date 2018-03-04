@@ -1,0 +1,1 @@
+*/5 * * * * root /opt/jeedom-rpi-scripts/runSensors.sh
